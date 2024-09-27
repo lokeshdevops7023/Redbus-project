@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: Launch EC2 Instance
+      ec2:
+        key_name: my-key
+        instance_type: t2.micro
+        image: ami-0c55b159cbfafe1f0  # Amazon Linux 2 AMI (replace with desired AMI)
+        region: us-east-1
+        group: default  # Security group
+        count: 1
+        instance_tags:
+          Name: MyEC2Instance
+      register: ec2
+
+    - name: Show Instance Public IP
+      debug:
+        var: ec2.instances[0].public_ip_address
+
