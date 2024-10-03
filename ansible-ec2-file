@@ -12,7 +12,7 @@
         group: default  # Security group
         count: 1
         instance_tags:
-          Name: MyEC2Instance
+          Name: lokeshec2
       register: ec2
 
     - name: Show Instance Public IP
